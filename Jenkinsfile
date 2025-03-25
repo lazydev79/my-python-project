@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+   stages { 
     stage('Flake8 Linting') {
                     steps {
                         script {
@@ -14,4 +14,5 @@ pipeline {
                         }
                     }
                 }
+                 }
 }
