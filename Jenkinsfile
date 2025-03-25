@@ -1,10 +1,6 @@
 pipeline {
     agent any
-     stage('Checkout Code') {
-            steps {
-                git 'https://github.com/lazydev79/my-python-project'  
-            }
-    }
+    
     stage('Flake8 Linting') {
                     steps {
                         script {
