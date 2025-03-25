@@ -10,7 +10,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/lazydev79/my-python-project.git'
             }
         }
-        stage('Static Code Analysis (Flake8)') {
+        stage('parallel') {
             parallel {
     stage('Flake8 Linting') {
                     steps {
