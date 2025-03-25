@@ -5,11 +5,7 @@ pipeline {
         DOCKER_LOGIN = "lazydev79" // Initialisation de la variable
     }
    stages { 
-    stage('Checkout Code') {
-            steps {
-                git 'https://github.com/lazydev79/my-python-project.git'  
-            }
-        }
+   
     stage('Flake8 Linting') {
                     steps {
                         script {
