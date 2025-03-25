@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        IMAGE_NAME = "lazydev79/my-python-application"
+        DOCKER_LOGIN = "lazydev79" // Initialisation de la variable
+    }
    stages { 
     stage('Flake8 Linting') {
                     steps {
@@ -34,5 +38,17 @@ pipeline {
                     }
                 }
     }
-
+ stage('Build & Push Docker Image') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'DOCKER_PASSWORD_SCOL', variable: 'DOCKER_PASS')]) {
+                        sh """
+                            docker build -t ${IMAGE_NAME}:${env.BUILD_VERSION} .
+                            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD_SCOL
+                            docker push ${IMAGE_NAME}:${env.BUILD_VERSION}
+                        """
+                    }
+                }
+            }
+        }
 }
