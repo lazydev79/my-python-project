@@ -41,7 +41,7 @@ pipeline {
  stage('Build & Push Docker Image') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'DOCKER_PASSWORD_SCOL', variable: 'DOCKER_PASS')]) {
+                    withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD_SCOL')]) {
                         sh """
                             docker build -t ${IMAGE_NAME}:${env.BUILD_VERSION} .
                             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD_SCOL
